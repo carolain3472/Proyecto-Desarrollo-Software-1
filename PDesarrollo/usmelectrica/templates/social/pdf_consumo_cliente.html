@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reporte-Consumos</title>
+    <link rel="stylesheet" href="{% static 'reportesConsumo.css' %}">
+</head>
+<body>
+<div class="control-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-2-4">
+        <div class="slogan">SGU Y CONSUMO ENERGETICO </div>
+        
+      </div>
+      <div class="col-4 text-right">
+        <a href="javascript:window.print()">Imprimir</a>
+      </div><!--.col-->
+    </div><!--.row-->
+  </div><!--.container-->
+</div><!--.control-bar-->
+
+<header class="row">
+  <div class="logoholder text-center" >
+    <img class="logo" src="{% static 'imagenes/logo_2.png' %}">
+  </div><!--.logoholder-->
+
+  <div class="me">
+    <p>
+      <strong>Sistema de Gestion de Usuarios y Consumo Energetico S.A.</strong><br>
+      Cl. 13 #100-00, Cali<br>
+      Colombia.<br>
+      
+    </p>
+  </div><!--.me-->
+
+  <div class="info">
+    <p>
+      Web: <a href="/index.html">www.SGU.co</a><br>
+      E-mail: info@sguconsumo.com<br>
+      Tel: +57 3117403058<br>
+      Twitter: @sgu_consumosCol
+    </p>
+  </div><!-- .info -->
+
+</header>
+
+
+<div class="row section">
+
+	<div class="col-2">
+    <h1>Reporte de Consumos</h1>
+  </div><!--.col-->
+
+  <div class="col-2 text-right details">
+    <p>
+      
+      <strong>Fecha inicio: </strong>  {{desde}} <br>
+      <strong>Fecha fin: </strong> {{hasta}}
+    </p>
+  </div><!--.col-->
+  
+  
+  
+  <div class="col-2">
+    
+
+    <p class="client">
+      <strong>Datos del cliente:</strong><br>
+      {{cliente.nombre_cliente }} {{cliente.apellidoP_Cliente }} {{cliente.apellidoM_Cliente }} <br>
+      {{cliente.tipo_id_cliente}} {{cliente.id_cliente }}<br>
+      {{ cliente.direccion_cliente }}<br>
+	    {{cliente.celular_cliente}}<br>
+      Persona {{cliente.tipo_cliente}}
+    </p>
+  </div><!--.col-->
+  
+
+</div><!--.row-->
+
+</div><!--.row-->
+
+{%for servicio in facturasServicios%}
+
+<h2>{{servicio.servicio.tipo_servicios}}</h2>
+<h3>{{servicio.servicio.direccion_servicio}}</h3>
+
+<div class="invoicelist-body">
+  <table>
+    <thead>
+      <th width="20%">Id</th>
+      <th width="30%">Consumo</th>
+      
+      <th width="30%">Fecha inicio</th>
+      <th width="60%">Fecha fin</th>
+
+    </thead>
+    <tbody>
+
+      {% for factura in servicio.facturas %}
+
+      <tr>
+        <td width='20%'><span>{{factura.id}}</span></td>
+        <td width='20%'><span>{{factura.consumo_factura}}</span></td>
+        <td width="20%"><span>{{factura.periodo_factu}}</span></td>
+        <td width="20%"><span>{{factura.date_crea_factu}}</span></td>
+       
+      </tr>
+
+      {%endfor%}
+      
+    </tbody>
+  </table>
+</div><!--.invoice-body-->
+{%endfor%}
+</body>
+</html>

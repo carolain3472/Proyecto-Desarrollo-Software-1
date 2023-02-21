@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'registro_new_cliente.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel=" preconnect"
+        href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="cabecera">
+        <div class="logo">
+            <img src="{% static 'imagenes/logo_2.png' %}"  alt="logo de la compania" class="logo-img">
+            <h2 class="logo-nombre">SGU Y CONSUMO ENERGETICO</h2>
+        </div>
+        <nav>
+            <span class="navbar_text"> Cliente </span>
+            <span class="navbar_text"> Registro </span>
+    
+            <!--<a class="salir" onclick="window.location.href='/admin-gestion.html'">Salir</a>-->
+    
+            </nav>
+    </header>
+    <form id="form" action="" method="POST">
+
+        {% csrf_token %}
+        <div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-id-card icon"></i>
+                <input type="text" placeholder="Numero identificacion" name="id">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-id-card-clip icon"></i>
+                <select name="tipoid" class="select">
+                    <option value="C.C" selected>Cedula</option>
+                    <option value="NIT" >Nit</option>
+
+                  </select>
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-user-secret icon"></i>
+                <input type="text" placeholder="Nombre" name="nombre">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-user-secret icon"></i>
+                <input type="text" placeholder="Primer apellido" name="apellidoP">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-user-secret icon"></i>
+                <input type="text" placeholder="Segundo apellido" name="apellidoM">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-mobile-screen-button icon"></i>
+                <input type="number" placeholder="Numero de celular" name="celular">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-envelope icon"></i>
+                <input type="text" placeholder="Email" name="email">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-location-dot icon"></i>
+                <input type="text" placeholder="Direccion" name="direccion">
+            </div>
+            <div class="input_contenedor">
+                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" placeholder="Contrase&ntilde;a" name="contra">
+            </div>
+           
+            <div>
+                <input type="submit" value="CREAR" class="button">
+            </div>
+        </div>
+    </form>
+
+
+    
+</body>
+
+</html>

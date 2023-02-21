@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+<head>
+    <title>Gerente</title>
+    <link rel="stylesheet" href="{% static 'gerente.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="cabecera">
+        <div class="logo">
+            <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania" >
+            <h2>SGU Y CONSUMO ENERGETICO</h2>
+        </div>
+        <nav>
+            <h1 class="titulo">Gerente</h1>
+        </nav>
+    </header>
+    <div class="container">
+        <h3 class="subtitulo">Que deseas hacer?</h3>
+        <div class="funciones">
+        <div class="carta">
+            <h4 class="subsubtitulo">Reporte de clientes</h4>
+            <p class="info">Accede a los reportes del historial de clientes</p>
+            <button onclick="window.location.href='{% url 'reporte_cliente' %}'">Ir</button>
+        </div>
+
+        <div class="carta">
+            <h4 class="subsubtitulo">Consultar Usuarios</h4>
+            <p class="info">Consulta los usuarios disponibles en la plataforma</p>
+            <button onclick="window.location.href='{% url 'gerente' %}'">Ir</button>
+        </div>
+
+        <div class="carta">
+            <h4 class="subsubtitulo">Consumos</h4>
+            <p class="info">Consultar consumos de la empresa</p>
+            <button class="button">Ir</button>
+        </div>
+    </div>
+    </div>
+    <div class="salir">
+        <button onclick="window.location.href='{% url 'login' %}'">Salir</button>
+    </div>
+</body>

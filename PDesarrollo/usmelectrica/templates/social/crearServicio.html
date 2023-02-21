@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Registro</title>
+    <link rel="stylesheet" href="{% static 'registro.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel=" preconnect"
+        href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="{% static 'imagenes/logo_2.png' %}"  alt="logo de la compania" class="logo-img">
+            <h2 class="logo-nombre">SGU Y CONSUMO ENERGETICO</h2>
+        </div>
+        <nav>
+            <h1>Crear servicio</h1>
+        </nav>
+    </header>
+    <form id="form" action="{%url 'crear_servicio' cliente.id_cliente operador.id_operador %}" method="POST">
+
+        {% csrf_token %}
+        <div class="contenedor">
+
+
+
+            <div class="input-contenedor">
+                <i class="fa-solid fa-id-card-clip icon"></i>
+                <select name="tiposervicio" class="select">
+                    <option value="Residencial" selected>Residencial</option>
+                    <option value="Comercial" >Comercial</option>
+                    <option value="Industrial" >Industrial</option>
+                  </select>
+            </div>
+
+
+            <div class="input-contenedor">
+                <i class="fa-solid fa-user-secret icon"></i>
+                <input type="text" placeholder="Direccion del servicio" name="direccionServicio">
+            </div>
+           
+            <div>
+                <input type="submit" value="INGRESAR SERVICIO" class="button">
+            </div>
+        </div>
+    </form>
+    
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+body{
+    margin: 0;
+    font-family: 'Archivo Narrow';
+}
+
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: mediumpurple;
+    align-items: center;
+    padding: 10px;
+}
+
+.titulo{
+    background-color: white;
+    border-radius: 10px;
+    padding-right: 20px;
+    padding-left: 20px;
+
+}
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+     align-items: center;
+    margin-top: 80px;
+}
+
+.input_contenedor {
+    margin-bottom: 10px;
+    border: 2px solid rgb(112, 90, 255);
+    border-radius: 10px;
+}
+
+input[type="text"],input[type="password"]{
+    font-size: 20px;
+    width: auto;
+    padding: auto;
+    border: none;
+    margin-right: 10px;
+}
+
+.button {
+    border: none;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    background-color: black;
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.button:hover{
+    background: rgb(101, 0, 233);
+}
+
+.select{
+    width: 80%;
+    text-align: left;
+    font-size: 20px;
+ }
+
+ .icon{
+    min-width: 50px;
+    text-align: center;
+    color: #5048ad;
+ }

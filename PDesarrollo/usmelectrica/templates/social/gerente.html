@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+  <head>
+    <title>Lista Gerente</title>
+    <link rel="stylesheet" href="{% static 'gerente-lista.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/e17893926d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania"/>
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+      </div>
+      <nav>
+        <span class="navbar_text"> Gerente </span>
+        <span class="navbar_text"> Lista </span>
+  
+        <a href="{% url 'login' %}" class="nav-link">Salir</a>
+      </nav>
+    </header>
+    <div>
+      <h1 class="titulo">LISTA DE USUARIOS</h1>
+    </div>
+    <div class="contenedor">
+      <div class="seleccionar">
+        <form action="{% url 'gerente' %}" method="POST">
+        {% csrf_token %}
+      
+        <select class="select" name="tipousuario">
+          <option value="administrador">Administrador</option>
+          <option value="operador">Operador</option>
+          <option value="cliente">Cliente</option>
+        </select>
+
+        <button class="mostrar">Mostrar</button>
+
+        <i class="material-icons">search</i>
+        <div class="search">
+              <input type="text" name="id" id="" class="search-input" placeholder="Buscar Usuarios">
+          </div>
+        </form> 
+      </div>
+    
+    </div>
+    <div class="datatable-container">
+      <div class="header-tools">
+        <div class="list-items">
+          Mostrar
+          <select name="n-entries" id="n-enties" class="n-entries">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+          </select>
+          Entradas
+      </div>
+          
+      </div>
+      {% if tipoUsuario == 'administrador' %}
+      <h1>ADMINISTRADOR</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_gerente}}</td>
+                  <td>{{usuario.id_gerente}}</td>
+                  <td>{{usuario.nombre_gerente}}</td>
+                  <td>{{usuario.apellidoP_Gerente}}</td>
+                  <td>{{usuario.apellidoM_Gerente}}</td>
+                  <td>{{usuario.email_gerente}}</td>
+                  <td>{{usuario.direccion_gerente}}</td>
+                  <td>{{usuario.celular_gerente}}</td>   
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%} {% if tipoUsuario == 'operador' %}
+    <div class="datatable-container">
+      <h1>OPERADORES</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_operador}}</td>
+                  <td>{{usuario.id_operador}}</td>
+                  <td>{{usuario.nombre_operador}}</td>
+                  <td>{{usuario.apellidoP_Operador}}</td>
+                  <td>{{usuario.apellidoM_Operador}}</td>
+                  <td>{{usuario.email_operador}}</td>
+                  <td>{{usuario.direccion_operador}}</td>
+                  <td>{{usuario.celular_operador}}</td>
+                  <td><span class="{{usuario.estado_operador}}"></span></td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%} {% if tipoUsuario == 'cliente' %}
+    <div class="datatable-container">
+      <h1>CLIENTES</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_cliente}}</td>
+                  <td>{{usuario.id_cliente}}</td>
+                  <td>{{usuario.nombre_cliente}}</td>
+                  <td>{{usuario.apellidoP_Cliente}}</td>
+                  <td>{{usuario.apellidoM_Cliente}}</td>
+                  <td>{{usuario.email_cliente}}</td>
+                  <td>{{usuario.direccion_cliente}}</td>
+                  <td>{{usuario.celular_cliente}}</td>
+                  <td><span class="{{usuario.estado_cliente}}"></span></td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%}
+  </body>
+</html>

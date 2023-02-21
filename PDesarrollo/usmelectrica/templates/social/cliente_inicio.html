@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+<head>
+    <title>Cliente</title>
+    <link rel="stylesheet" href="{% static 'cliente.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="cabecera">
+    <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania"> 
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+    </div>
+    <nav>
+        <h1 class="titulo">Cliente</h1>
+    </nav>
+</header>
+<div class="container">
+    <h3 class="subtitulo">Que deseas hacer?</h3>
+    <div class="funciones">
+    <div class="carta">
+        <h4 class="subsubtitulo">Consultar factura</h4>
+        <p class="info">Accede a la factura</p>
+        <button onclick="window.location.href='{% url 'facturacliente' usuario.id_cliente %}'">Ir</button>
+    </div>
+</div>
+</div>
+<div class="salir">
+    <button onclick="window.location.href='{% url 'login' %}'">Salir</button>
+</div>
+
+</div>
+</body>

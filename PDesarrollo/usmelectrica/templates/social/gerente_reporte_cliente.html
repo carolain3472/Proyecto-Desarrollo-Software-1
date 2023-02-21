@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+  <head>
+    <title>Reporte Clientes</title>
+    <link rel="stylesheet" href="{% static 'reporteCliente.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/e17893926d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania"/>
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+      </div>
+      <nav>
+        <span class="navbar_text"> Operador </span>
+        <span class="navbar_text"> Gestion </span>
+  
+        <a href="{% url 'login' %}" class="nav-link">Salir</a>
+      </nav>
+    </header>
+    <div> 
+      <h1 class="titulo">CLIENTES</h1>
+    </div>
+    <div class="datatable-container">
+      <div class="header-tools">
+        <div class="list-items">
+          Mostrar
+          <select name="n-entries" id="n-enties" class="n-entries">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+          </select>
+          Entradas
+      </div>
+      <div class="tools">
+              <ul>
+                  <li>
+                
+                  </li>
+              </ul>
+          </div>
+      <i class="material-icons">search</i>
+      <form id="form" action="" method="POST">
+        {% csrf_token %}
+       <div class="search">
+              <input type="text" name="id" id="" class="search-input">
+          </div>
+          <button class="mostrar">Buscar</button>
+          
+          </form>
+         
+      </div>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+              <td>{{usuario.tipo_id_cliente}}</td>
+              <td>{{usuario.id_cliente}}</td>
+              <td>{{usuario.nombre_cliente}}</td>
+              <td>{{usuario.apellidoP_Cliente}}</td>
+              <td>{{usuario.apellidoM_Cliente}}</td>
+              <td>{{usuario.email_cliente}}</td>
+              <td>{{usuario.direccion_cliente}}</td>
+              <td>{{usuario.celular_cliente}}</td>
+              <td><span class="{{usuario.estado_cliente}}"></span></td>
+              <form action="{% url 'pdf_consumo' usuario.id_cliente %}" target="_blank" method="POST" >
+                {% csrf_token %}
+                  <td class="w"><label>Desde</label>
+                    <input type="month" name="inicio" id="fecha" class="form-control" value="2023-01">
+          
+                    <label>Hasta</label>
+                    <input type="month" name="fin" id="fecha" class="form-control" value="2023-01">
+                    <button class="editar" ><i class="material-icons">draw</i></button></td>
+                  </form>
+              </tr>
+
+              {%endfor%}
+
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    </body>
+</html>

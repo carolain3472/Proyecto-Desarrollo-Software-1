@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+<head>
+    <title>Operador</title>
+    <link rel="stylesheet" href="{% static 'operador.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="cabecera">
+        <div class="logo">
+            <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania" >
+            <h2>SGU Y CONSUMO ENERGETICO</h2>
+        </div>
+        <nav>
+            <h1 class="titulo">Operador</h1>
+        </nav>
+    </header>
+    <div class="container">
+        <h3 class="subtitulo">Que deseas hacer?</h3>
+        <div class="funciones">
+        <div class="carta">
+            <h4 class="subsubtitulo">Gestionar Clientes</h4>
+            <p class="info">Crear, eliminar, actualizar, modificar clientes</p>
+            <button onclick="window.location.href='{% url 'operador' operadores.id_operador %}'">Ir</button>
+        </div>
+    
+        <div class="carta">
+            <h4 class="subsubtitulo">Registrar pagos</h4>
+            <p class="info">Registrar los pagos realizados de forma presencial</p>
+            <button onclick="window.location.href='{% url 'operador_registroPagos' operadores.id_operador %}'">Ir</button>
+        </div>
+    
+        <div class="carta">
+            <h4 class="subsubtitulo">Subir informacion de pagos</h4>
+            <p class="info">Subir la informacion de pagos realizada en el banco</p>
+            <button onclick="window.location.href='{% url 'importar' operadores.id_operador %}'">Ir</button>
+        </div>
+    </div>
+    </div>
+    <div class="salir">
+        <button onclick="window.location.href='{% url 'login' %}'">Salir</button>
+    </div>
+</body>

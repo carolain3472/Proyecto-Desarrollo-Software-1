@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+  <head>
+    <title>Gestión Operador</title>
+    <link rel="stylesheet" href="{% static 'operador_gestion.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/e17893926d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania"/>
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+      </div>
+      <nav>
+        <span class="navbar_text"> Operador </span>
+        <span class="navbar_text"> Gestion </span>
+  
+        <a href="{% url 'login' %}" class="nav-link">Salir</a>
+      </nav>
+    </header>
+    <div> 
+      <h1 class="titulo">GESTIÓN DE CLIENTES</h1>
+    </div>
+    <div class="datatable-container">
+      <div class="header-tools">
+        <div class="list-items">
+          Mostrar
+          <select name="n-entries" id="n-enties" class="n-entries">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+          </select>
+          Entradas
+      </div>
+       <div class="tools">
+              <ul>
+                  <li>
+                   <form action="{% url 'operador_crear' operadores.id_operador %}">
+                        {% csrf_token %}
+                        <button onclick="window.location.href='/registro.html'">
+                          <i class="material-icons">add_circle</i>
+                      </button>
+                    </form>
+                  </li>
+              </ul>
+          </div>
+      <i class="material-icons">search</i>
+      <form action="{% url 'operador' operadores.id_operador %}" method="POST">
+        {% csrf_token %}    
+        <div class="search">
+          <input type="text" name="id" id="" class="search-input" placeholder="Buscar Usuarios"> 
+      </div>
+        <button class="mostrar">Mostrar</button>
+      </form>
+    
+      </div>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+                  <th>Gestion</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for cliente in clientes %}
+              <tr>
+                  <td>{{cliente.tipo_id_cliente}}</td>
+                  <td>{{cliente.id_cliente}}</td>
+                  <td>{{cliente.nombre_cliente}}</td>
+                  <td>{{cliente.apellidoP_Cliente}}</td>
+                  <td>{{cliente.apellidoM_Cliente}}</td>
+                  <td>{{cliente.email_cliente}}</td>
+                  <td>{{cliente.direccion_cliente}}</td>
+                  <td>{{cliente.celular_cliente}}</td>      
+                  <td><span class="{{cliente.estado_cliente}}"></span></td> 
+                  <td>
+                    <form action="{% url 'crear_servicio' cliente.id_cliente operadores.id_operador%}">
+                        {% csrf_token %}
+                        <button class="editar">
+                          <i class="material-icons">draw</i>
+                        </button>
+                    </form>
+                    
+                    <form
+                      action="{% url 'operador_actualizar_cliente' cliente.id_cliente %}"
+                    >
+                      {% csrf_token %}
+                      <button class="editar">
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </form>
+
+                    <form
+                      action="{% url 'operador_borrar_clientes' cliente.id_cliente %}"
+                      method="POST"
+                        >   
+                      {% csrf_token %} {% if cliente.estado_cliente %}
+                      <button class="editar">
+                        <i class="material-icons">cancel</i>
+                      </button>
+                     {% else %}
+                    <button class="editar">
+                      <i class="material-icons">done</i>
+                    </button>
+                    {% endif%}
+                  </form>
+                </td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+
+    </body>
+</html>

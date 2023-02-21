@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en">
+  <head>
+    <title>Reporte Clientes</title>
+    <link rel="stylesheet" href="{% static 'reporteCliente.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/e17893926d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania"/>
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+      </div>
+      <nav>
+        <span class="navbar_text"> Operador </span>
+        <span class="navbar_text"> Gestion </span>
+  
+        <a href="{% url 'login' %}" class="nav-link">Salir</a>
+      </nav>
+    </header>
+    <div> 
+      <h1 class="titulo">SERVICIOS</h1>
+    </div>
+    <div class="datatable-container">
+      <div class="header-tools">
+        <div class="list-items">
+          Mostrar
+          <select name="n-entries" id="n-enties" class="n-entries">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+          </select>
+          Entradas
+      </div>
+      <div class="tools">
+              <ul>
+                  <li>
+                  
+                  </li>
+              </ul>
+          </div>
+
+      
+         
+      </div>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>ID Servicio</th>
+                  <th>Tipo Servicio</th>
+                  <th>Estado</th>
+                  <th>Pagos Retrasados</th>
+                  <th>Direccion</th>
+                  <th>Fecha Registro</th>
+                  <th>Acciones</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for servicio in servicios %}
+            <tr>
+              <td>{{servicio.id}}</td>
+              <td>{{servicio.tipo_servicios}}</td>
+              <td><span class="{{servicio.estado_servicio}}"></span></td>
+              <td id="mora"><span class="{{servicio.mora_servicio}}"></span></td>
+              <td>{{servicio.direccion_servicio}}</td>
+              <td>{{servicio.fecha_creacion}}</td>
+              <td>
+                <form action="{% url 'pdf_factura' servicio.id %}" target="_blank" method="POST" >
+                    {% csrf_token %}
+                      <button class="editar"><i class="material-icons"><span class="material-symbols-outlined">
+                        receipt_long
+                        </span></i></button></td>
+                      </form>
+
+              </td>
+              
+              </tr>
+
+              {%endfor%}
+
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    </body>
+</html>

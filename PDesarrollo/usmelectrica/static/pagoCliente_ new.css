@@ -1,0 +1,29 @@
+body{
+    margin: 0;
+    font-family: 'Archivo Narrow';
+}
+
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: mediumpurple;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+
+.navbar_text{
+    font-weight: 600;
+    padding-right: 10px; 
+}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <title>Gestion Administrador</title>
+    <link rel="stylesheet" href="{% static 'admin_css.css' %}" />
+    <script
+      src="https://kit.fontawesome.com/e17893926d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="logo">
+        <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania">
+        <h2>SGU Y CONSUMO ENERGETICO</h2>
+      </div>
+      <nav>
+        <span class="navbar_text"> Administrador </span>
+        <span class="navbar_text"> Gestion </span>
+
+        <a href="{% url 'login' %}" class="nav-link">Salir</a>
+      </nav>
+    </header>
+    <div> 
+      <h1 class="titulo">GESTION DE USUARIOS</h1>
+    </div>
+    <div class="contenedor">
+      <div class="seleccionar">
+        <form action="{% url 'admin' %}" method="POST">
+        {% csrf_token %}
+      
+        <select class="select" name="tipousuario">
+          <option value="gerente">Gerente</option>
+          <option value="operador">Operador</option>
+          <option value="cliente">Cliente</option>
+        </select>
+
+        
+        <button class="mostrar">Mostrar</button>
+
+        <i class="material-icons">search</i>
+        <div class="search">
+              <input type="text" name="id" id="" class="search-input" placeholder="Buscar Usuarios">
+          </div>
+
+
+        </form> 
+      </div>
+    
+    </div>
+    <div class="datatable-container">
+      <div class="header-tools">
+        <div class="list-items">
+          Mostrar
+          <select name="n-entries" id="n-enties" class="n-entries">
+              <option value="5">5</option>
+              <option value="10">10</option>
+              <option value="15">15</option>
+              <option value="15">20</option>
+          </select>
+          Entradas
+      </div>
+          <div class="tools">
+              <ul>
+                  <li>
+                    <form action="{% url 'admin_crear' %}">
+                        {% csrf_token %}
+                      <button>
+                          <i class="material-icons">add_circle</i>
+                      </button>
+                    </form>
+                  </li>
+              </ul>
+          </div>
+      </div>
+      {% if tipoUsuario == 'gerente' %}
+      <h1>GERENTES</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+                  <th>Gestion</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_gerente}}</td>
+                  <td>{{usuario.id_gerente}}</td>
+                  <td>{{usuario.nombre_gerente}}</td>
+                  <td>{{usuario.apellidoP_Gerente}}</td>
+                  <td>{{usuario.apellidoM_Gerente}}</td>
+                  <td>{{usuario.email_gerente}}</td>
+                  <td>{{usuario.direccion_gerente}}</td>
+                  <td>{{usuario.celular_gerente}}</td>
+                  <td><span class="{{ usuario.estado_gerente }}"></span></td>
+                  <td>
+                    <form
+                      action="{% url 'admin_actualizar_gerente1' usuario.id_gerente %}"
+                    >
+                      {% csrf_token %}
+                      <button class="editar">
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </form>
+                    <form
+                      action="{% url 'admin_borrar_gerentes' usuario.id_gerente %}"
+                      method="POST"
+                        >   
+                      {% csrf_token %} {% if usuario.estado_gerente %}
+                      <button class="editar">
+                        <i class="material-icons">cancel</i>
+                      </button>
+                     {% else %}
+                    <button class="editar">
+                      <i class="material-icons">done</i>
+                    </button>
+                    {% endif%}
+                  </form>
+                </td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%} 
+    
+    {% if tipoUsuario == 'operador' %}
+    <div class="datatable-container">
+      <h1>OPERADORES</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+                  <th>Gestion</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_operador}}</td>
+                  <td>{{usuario.id_operador}}</td>
+                  <td>{{usuario.nombre_operador}}</td>
+                  <td>{{usuario.apellidoP_Operador}}</td>
+                  <td>{{usuario.apellidoM_Operador}}</td>
+                  <td>{{usuario.email_operador}}</td>
+                  <td>{{usuario.direccion_operador}}</td>
+                  <td>{{usuario.celular_operador}}</td>
+                  <td><span class="{{ usuario.estado_operador }}"></span></td>
+                  <td>
+                    <form
+                      action="{% url 'admin_actualizar_operador' usuario.id_operador %}"
+                    >
+                      {% csrf_token %}
+                      <button class="editar">
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </form>
+                    <form
+                      action="{% url 'admin_borrar_operadores' usuario.id_operador %}"
+                      method="POST"
+                        >   
+                      {% csrf_token %} {% if usuario.estado_operador %}
+                      <button class="editar">
+                        <i class="material-icons">cancel</i>
+                      </button>
+                     {% else %}
+                    <button class="editar">
+                      <i class="material-icons">done</i>
+                    </button>
+                    {% endif%}
+                  </form>
+                </td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%} 
+    
+    {% if tipoUsuario == 'cliente' %}
+    <div class="datatable-container">
+      <h1>CLIENTES</h1>
+      <table class="datatable">
+          <thead>
+              <tr>
+                  <th>Tipo I.D</th>
+                  <th>Identificacion</th>
+                  <th>Nombre</th>
+                  <th>Primer apellido</th>
+                  <th>Segundo apellido</th>
+                  <th>Correo</th>
+                  <th>Direccion</th>
+                  <th>Celular</th>
+                  <th>Estado</th>
+                  <th>Gestion</th>
+              </tr>
+          </thead>
+
+          <tbody>
+            {% for usuario in usuarios %}
+              <tr>
+                  <td>{{usuario.tipo_id_cliente}}</td>
+                  <td>{{usuario.id_cliente}}</td>
+                  <td>{{usuario.nombre_cliente}}</td>
+                  <td>{{usuario.apellidoP_Cliente}}</td>
+                  <td>{{usuario.apellidoM_Cliente}}</td>
+                  <td>{{usuario.email_cliente}}</td>
+                  <td>{{usuario.direccion_cliente}}</td>
+                  <td>{{usuario.celular_cliente}}</td>
+                  <td><span class="{{usuario.estado_cliente}}"></span></td>
+                  <td>
+                    <form action="{% url 'crear_servicio_admin' usuario.id_cliente %}">
+                        {% csrf_token %}
+                        <button class="editar">
+                          <i class="material-icons">draw</i>
+                        </button>
+                    </form>
+                    
+                    <form
+                      action="{% url 'admin_actualizar_cliente' usuario.id_cliente %}"
+                    >
+                      {% csrf_token %}
+                      <button class="editar">
+                        <i class="material-icons">edit</i>
+                      </button>
+                    </form>
+
+                    <form
+                      action="{% url 'admin_borrar_clientes' usuario.id_cliente %}"
+                      method="POST"
+                        >   
+                      {% csrf_token %} {% if usuario.estado_cliente %}
+                      <button class="editar">
+                        <i class="material-icons">cancel</i>
+                      </button>
+                     {% else %}
+                    <button class="editar">
+                      <i class="material-icons">done</i>
+                    </button>
+                    {% endif%}
+                  </form>
+                </td>
+              </tr>
+              {%endfor%}
+          </tbody>
+      </table>
+
+      <div class="footer-tools">
+          <div class="pages">
+              <ul>
+                  <li><span class="active">1</span></li>
+                  <li><button>2</button></li>
+                  <li><button>3</button></li>
+                  <li><span>...</span></li>
+                  <li><button>9</button></li>
+                  <li><button>10</button></li>
+              </ul>
+          </div>
+      </div>
+    </div>
+    {%endif%}
+  </body>
+</html>

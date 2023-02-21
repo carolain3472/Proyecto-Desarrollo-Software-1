@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+
+<head>
+    <title>Actualizar Operador</title>
+    <link rel="stylesheet" href="{% static 'editar.css' %}">
+    <script src="https://kit.fontawesome.com/e17893926d.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/%22%3E">
+    <link rel=" preconnect"
+        href="https://fonts.gstatic.com/" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="cabecera">
+        <div class="logo">
+          <img src="{% static 'imagenes/logo_2.png' %}" alt="logo de la compania" >-->
+          <h2>SGU Y CONSUMO ENERGETICO</h2>
+        </div>
+        <nav>
+            <h1 class="titulo">Modificar</h1>
+        </nav>
+      </header>
+
+      <form class="form" action="" method="POST">
+        {% csrf_token %}
+        <div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-id-card "></i>
+            <input type="text" value={{operador.id_operador}}  placeholder="Numero identificacion" name="id">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-id-card-clip "></i>
+            <select class="select">
+                {% if operador.tipo_id_operador == 'C.C' %}
+              <option value="C.C" selected>
+                Cedula
+              </option>
+              <option value="NIT">Nit</option>
+              {% endif %}
+              {% if operador.tipo_id_operador == 'NIT' %}
+                    <option value="C.C" >Cedula</option>
+                    <option value="NIT" selected >NIT</option>
+                    {% endif %}
+            </select>
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-user-secret"></i>
+            <input type="text" value={{operador.nombre_operador}}  placeholder="Nombre" name="nombre">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-user-secret"></i>
+            <input type="text" value={{operador.apellidoP_Operador}} placeholder="Primer apellido" name="apellidoP">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-user-secret"></i>
+            <input type="text" value={{operador.apellidoM_Operador}} placeholder="Segundo apellido" name="apellidoM">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-mobile-screen-button"></i>
+            <input type="number" value={{operador.celular_operador}} placeholder="Numero de celular" name="celular">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-envelope"></i>
+            <input type="text" value={{operador.email_operador}} placeholder="Email" name="email">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-location-dot"></i>
+            <input type="text" value={{operador.direccion_operador}} placeholder="Direccion" name="direccion">
+          </div>
+          <div class="input_contenedor">
+            <i class="icon fa-solid fa-lock"></i>
+            <input type="password" value={{operador.contrasena_operador}} placeholder="Contrase&ntilde;a" name="contra">
+          </div>
+          <div>
+            <input type="submit" value="MODIFICAR" class="button" />
+          </div>
+        </div>
+      </form>
+    
+</body>
+
+</html>

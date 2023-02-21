@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura</title>
+    <link rel="stylesheet" href="{% static 'factura_new.css' %}">
+    <script >
+      var objetos = new Array();
+      objetos[0] = "{% static 'imagenes/banner.jpg' %}";
+      objetos[1] = "{% static 'imagenes/banner3.jpg' %}";
+      objetos[2] = "{% static 'imagenes/banner2.jpg' %}";
+      objetos[3] = "{% static 'imagenes/banner4.jpg' %}";
+      objetos[4] = "{% static 'imagenes/banner5.jpg' %}";
+      
+      
+      function aleatorio() {
+          var azar = Math.floor(Math.random() * objetos.length);
+          document.images["imagen"].src = objetos[azar];
+      }
+      </script>
+  </head>
+<body onload="aleatorio()">
+<div class="control-bar">
+  <div class="container">
+    <div class="row">
+      <div class="col-2-4-2">
+        <div class="slogan">SGU Y CONSUMO ENERGETICO 
+          <div class="imprimir">
+            <button href="javascript:window.print()">Imprimir</button>
+          </div>
+         
+      </div>
+      <div class="form">
+       <form
+          action= "{% url 'pagoCliente' servicio.id %}">
+          {% csrf_token %}
+     
+          <button>Pagar</button>
+        </form>
+      </div>
+      </div><!--.col-->
+
+
+    </div><!--.row-->
+  </div><!--.container-->
+</div><!--.control-bar-->
+
+<header class="row">
+  <div class="logoholder text-center" >
+    <img class="logo" src="{% static 'imagenes/logo_2.png' %}">
+  </div><!--.logoholder-->
+
+  <div class="me">
+    <p>
+      <strong>Sistema de Gestion de Usuarios y Consumo Energetico S.A.</strong><br>
+      Cl. 13 #100-00, Cali<br>
+      Colombia.<br>
+      
+    </p>
+  </div><!--.me-->
+
+  <div class="info">
+    <p>
+      Web: <a href="/index.html">www.SGU.co</a><br>
+      E-mail: info@sguconsumo.com<br>
+      Tel: +57 3117403058<br>
+      Twitter: @sgu_consumosCol
+    </p>
+  </div><!-- .info -->
+
+</header>
+
+
+<div class="row section">
+
+	<div class="col-2">
+    <h1>Factura</h1>
+  </div><!--.col-->
+
+  <div class="col-2">
+    
+
+    <p class="client">
+      <strong>Facturar a:</strong><br>
+      {{cliente.nombre_cliente}} {{cliente.apellidoP_Cliente}} {{cliente.apellidoM_Cliente}}<br>
+      {{cliente.tipo_id_cliente}} {{cliente.id_cliente}}<br>
+      Persona {{cliente.tipo_cliente}}<br>
+      {{servicio.direccion_servicio}}<br>
+	    +57 {{cliente.celular_cliente}}
+
+    </p>
+  </div><!--.col-->
+
+  <div class="col-2 text-right details">
+    <p>
+      <strong>Factura #: </strong> {{factura.id}} <br>
+      <strong>Fecha: </strong> {{factura.date_crea_factu}} <br>
+      <strong> Vence: </strong> {{factura.date_ven_factu}}
+    </p>
+  </div><!--.col-->
+
+
+</div><!--.row-->
+
+</div><!--.row-->
+
+<div class="invoicelist-body">
+  <table>
+    <thead>
+      <th width="5%">Contrato</th>
+      <th width="60%">Detalle Consumo</th>
+      
+      <th width="10%">Cant.</th>
+      <th width="25%">Precio Unitario</th>
+      <th width="20%">Total</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td width='5%'><span>{{servicio.id}}</span></td>
+        <td width='60%'><span>Cargo Basico</span></td>
+        <td width="10%"><span>{{factura.consumo_factura}}</span></td>
+        <td width="20%" class="price"><span>778</span></td>
+        <td  width="20%" class="sum">{{factura.total_factura}}</td>
+      </tr>
+
+      {%for fac in vencidas %}
+      
+        <tr>
+        <td width='5%'><span>{{servicio.id}}</span></td>
+        <td width='60%'><span>Factura Anterior No {{fac.id}}</span></td>
+        <td width="10%"><span>{{fac.consumo_factura}}</span></td>
+        <td width="20%" class="price"><span>778</span></td>
+        <td  width="20%" class="sum">{{fac.total_factura}}</td>
+      </tr>
+
+      {%endfor%}
+      <!--<tr>
+        <td width='5%'><span>12345</span></td>
+        <td width='60%'><span>Impuesto Mora</span></td>
+        <td width="10%"><span>1</span></td>
+        <td width="20%" class="price"><span>70000</span></td>
+        <td  width="20%" class="sum">70000</td>
+      </tr>
+
+      -->
+      
+    </tbody>
+  </table>
+</div><!--.invoice-body-->
+
+<div class="invoicelist-footer">
+  <table>
+    <tr>
+      <td><strong>Total:</strong></td>
+      <td id="total_price">{{total}}</td>
+    </tr>
+  </table>
+</div>
+
+
+<footer class="rows">
+  <div class="col-1 text-center">
+    <p class="notaxrelated">El monto de la factura incluye el impuesto sobre el consumo.</p>
+    
+  </div>
+  <div class="banner">
+  <a><img src="" width=”468″ height=”60″ name="imagen"/></a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,332 @@
+body{
+    margin: 0;
+    font-family: 'Archivo Narrow';
+    background-image: url(imagenes/fondo.jpg);
+}
+
+.titulo{
+    font-size: 75px;
+	text-align: center;
+}
+
+.cabecera{
+    display: flex;
+    justify-content: space-between;
+    height: 70px;
+    background-color: mediumpurple;
+    align-items: center;
+    padding: 10px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img{
+    height: 50px;
+    margin-right: 10px;
+}
+
+.salir{
+    font-weight: 600;
+    padding-right: 10px;
+}
+
+.salir:hover{
+    color:indigo;
+    cursor: pointer;
+} 
+
+.navbar_text{
+    font-weight: 600;
+    padding-right: 10px; 
+}
+
+
+.select{
+	width: 90%;
+	text-align: left;
+	font-size: 20px;
+ 
+ }
+ 
+.contenedor {
+    width: 50%;
+    margin: auto;
+}
+
+.seleccionar{
+	margin-bottom: 10px;
+	width: 100%;
+    border: 2px solid rgb(112, 90, 255);
+	padding-top: 20px;
+}
+
+.mostrar {
+	margin-bottom: 20px;
+	right: 20px;
+	margin-left: 20px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	color: #fff;
+	background: #5f0378;
+	border-radius: 3px;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	cursor: pointer;
+	transition: .3s ease all;
+	cursor: pointer;
+}
+
+
+.mostrar:hover {
+    background: rgba(150, 5, 217, 0.9);
+}
+
+:root{
+    --primary-color: #b647c5;
+    --secundary-color:  #e394ef;
+    --highlight-color: rgb(242, 191, 255);
+
+    --dt-status-True-color: rgb(3, 151, 3);
+    --dt-status-False-color: red;
+
+    --dt-padding: 12px;
+    --dt-padding-s: 6px;
+    --dt-padding-xs: 2px;
+
+    --dt-border-radius: 3px;
+
+    --dt-background-color-container:#bdafef;
+    --dt-border-color:var(--secundary-color);
+    --dt-bg-color:var(--highlight-color);
+    --dt-text-color: black;
+    --dt-bg-active-button:var(--highlight-color);
+    --dt-text-color-button:var(--primary-color);
+    --dt-text-color-active-button:var(--primary-color);
+    --dt-hover-cell-color:var(--highlight-color);
+    --dt-even-row-color:var(--secundary-color);
+    --dt-focus-color:var(--highlight-color);
+    --dt-input-background-color:var(--secundary-color);
+    --dt-input-color:var(--primary-color);
+}
+
+.material-icons{
+    font-size: 15px;
+}
+
+.datatable-container{
+    font-family: 'Noto Sans', sans-serif;
+    background-color: var(--dt-background-color-container);
+    border-radius: var(--dt-border-radius);
+    color: var(--dt-text-color);
+    width: 1150px;
+    margin: 0 auto;
+    font-size: 15px;
+}
+
+.datatable-container .header-tools{
+    border-bottom: solid 1px var(--dt-border-color);
+    padding: var(--dt-padding);
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .search{
+    width: 30%;
+}
+
+.datatable-container .header-tools .search .search-input{
+    width: 100%;
+    background-color: var(--dt-input-background-color);
+    display: block;
+    box-sizing: border-box;
+    border-radius: var(--dt-border-radius);
+    border: solid 1px black;
+    color: black;
+}    
+
+.datatable-container .header-tools .tools{
+    width: 70%;
+}
+
+.datatable-container .header-tools .tools ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: start;
+    align-items: baseline;
+}
+
+.datatable-container .header-tools .tools ul li{
+    display: inline-block;
+    margin: 0 var(--dt-padding-xs);
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools{
+    padding: var(--dt-padding);
+    display: flex;
+    align-items: baseline;
+}
+
+.datatable-container .footer-tools .list-items{
+    width: 50%;
+}
+
+.datatable-container .footer-tools .pages {
+    margin-left: auto;
+    margin-right: 0;
+    width: 50%;
+}
+
+.datatable-container .footer-tools .pages ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-end;
+}
+
+.datatable-container .footer-tools .pages ul li{
+    display: inline-block;
+    margin: 0 var(--dt-padding-xs);
+}
+
+.datatable-container .footer-tools .pages ul li button,
+.datatable-container .header-tools .tools ul li button,
+.editar{
+    color: var(--dt-text-color-button);
+    width: 30%;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: var(--dt-border-radius);
+    background: transparent;
+    cursor: pointer;
+   
+}
+
+.datatable-container .footer-tools .pages ul li button:hover,
+.datatable-container .header-tools .tools ul li button:hover,
+.editar{
+    background: var(--dt-bg-active-button);
+    color: var(--dt-text-color-active-button);
+}
+
+.datatable-container .footer-tools .pages ul li span.active{
+    background-color: var(--dt-bg-color);
+    border-radius: var(--dt-border-radius);
+}
+
+.datatable-container .footer-tools .pages ul li button,
+.datatable-container .footer-tools .pages ul li span,
+.datatable-container .header-tools .tools ul li button, 
+.editar{
+    padding: var(--dt-padding-s) var(--dt-padding);
+}
+
+.datatable-container .datatable{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.datatable-container .datatable,
+.datatable-container .datatable th,
+.datatable-container .datatable td{
+    padding: var(--dt-padding) var(--dt-padding);
+}
+
+.datatable-container .datatable th{
+    font-weight: bolder;
+    text-align: left;
+    border-bottom: solid 1px var(--dt-border-color);
+}
+
+.datatable-container .datatable td{
+    border-bottom: solid 1px var(--dt-border-color);
+}
+
+.datatable-container .datatable tbody tr:nth-child(even){
+    background-color: var(--dt-even-row-color);
+}
+
+.datatable-container .datatable tbody tr:hover{
+    background-color: var(--dt-hover-cell-color);
+}
+
+.datatable-container .datatable tbody tr .True::after,
+.datatable-container .datatable tbody tr .False::after{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.datatable-container .datatable tbody tr .True::after{
+    content: 'Activo';
+    color: var(--dt-status-True-color);
+}
+
+.datatable-container .datatable tbody tr .False::after{
+    content: 'Inactivo';
+    color: var(--dt-status-False-color);
+}
+
+.datatable-container .datatable tbody tr .True::before,
+.datatable-container .datatable tbody tr .False::before{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.datatable-container .datatable tbody tr .True::before{
+    background-color: var(--dt-status-True-color);
+}
+
+.datatable-container .datatable tbody tr .False::before{
+    background-color: var(--dt-status-False-color);
+}
+
+.datatable-container .datatable tbody tr td button {
+    margin-left: 55px;
+}
+
+#mora .True::after,
+#mora .False::after{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+#mora .True::after{
+    content: 'En mora';
+    color: var(--dt-status-False-color);
+}
+
+#mora .False::after{
+    content: 'Al dia';
+    color: var(--dt-status-True-color);
+}
+
+#mora .True::before,
+#mora .False::before{
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+#mora .True::before{
+    background-color: var(--dt-status-False-color);
+}
+
+#mora .False::before{
+    
+    background-color: var(--dt-status-True-color);
+}
